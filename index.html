@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Cost Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            margin-top: 10px;
+            margin-bottom: 10px; /* Added margin-bottom */
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-bottom: 20px; /* Added margin-bottom */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Vehicle Cost Calculator</h2>
+        <form id="vehicleForm">
+            <label for="cityName">City Name:</label><br>
+            <input type="text" id="cityName" name="cityName"><br>
+            <label for="salesTaxRate">Sales Tax Rate (%):</label><br>
+            <input type="text" id="salesTaxRate" name="salesTaxRate"><br>
+            <label for="vehicleCost">Vehicle Cost:</label><br>
+            <input type="text" id="vehicleCost" name="vehicleCost"><br><br>
+            <input type="submit" value="Calculate Total Cost">
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Function to calculate total cost and display result
+        function calculateTotalCost() {
+            const cityName = document.getElementById('cityName').value;
+            const salesTaxRate = parseFloat(document.getElementById('salesTaxRate').value) / 100;
+            const vehicleCost = parseFloat(document.getElementById('vehicleCost').value.replace(/,/g, '')); // Remove commas
+            
+            if (!isNaN(salesTaxRate) && !isNaN(vehicleCost)) {
+                const citySalesTax = vehicleCost * salesTaxRate;
+                const totalCost = vehicleCost + citySalesTax;
+                const formattedTotalCost = '$' + totalCost.toLocaleString();
+                document.getElementById('result').textContent = `Total cost of the vehicle in ${cityName}: ${formattedTotalCost}`;
+            } else {
+                document.getElementById('result').textContent = 'Please enter valid input.';
+            }
+        }
+
+        // Submit form event listener
+        document.getElementById('vehicleForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            calculateTotalCost(); // Call function to calculate total cost
+        });
+    </script>
+</body>
+</html>
