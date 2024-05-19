@@ -1,4 +1,4 @@
-# Simple-Vehicle-Sales-Calculator
+# Simple-Vehicle-Sales-Calculator For Dealership
 Simple Vehicle Sales Calculator HTML CSS Javascript
 (Need to get API credentials for dynamic cities and sales tax rates if you want to add this feature for your app. Otherwise this is just pretty much based off hard inputs)
 --- Can Refer to sample-credential.js file as a template to add your credentials. Rename the file and tweak the script.js file and html file to return the results ---
